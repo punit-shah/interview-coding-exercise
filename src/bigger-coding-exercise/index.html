@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bigger coding exercise - Turnitin coding test</title>
+    <link rel="stylesheet" href="global.css" />
+    <style>
+      body {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      #main-image-container {
+        height: 400px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        text-transform: capitalize;
+      }
+      #main-image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      #image-links-container {
+        width: 100%;
+        min-height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #image-links-container ul {
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        gap: 16px;
+      }
+      #image-links-container a {
+        text-decoration: none;
+        text-transform: capitalize;
+        width: 150px;
+        height: 200px;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        gap: 8px;
+        align-items: center;
+      }
+      #image-links-container a:hover {
+        color: #0096ff;
+      }
+      #image-links-container img {
+        max-width: 100%;
+        max-height: 150px;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Bigger coding exercise</h1>
+
+    <div id="main-image-container"></div>
+
+    <div id="image-links-container"></div>
+  </body>
+
+  <script src="bigger-coding-exercise/app.js"></script>
+  <script>
+    updateMainImage();
+    updateImageLinks();
+  </script>
+</html>
