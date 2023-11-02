@@ -1,0 +1,11 @@
+{
+  "name": "turnitin-coding-test",
+  "version": "1.0.0",
+  "author": "Punit Shah",
+  "scripts": {
+    "start": "serve src"
+  },
+  "devDependencies": {
+    "serve": "^14.2.1"
+  }
+}

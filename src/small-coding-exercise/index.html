@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Small coding exercise - Turnitin coding test</title>
+    <link rel="stylesheet" href="global.css" />
+    <style>
+      code {
+        font-family: monospace;
+        padding: 0.2em 0.4em;
+        font-size: 85%;
+        background-color: #eee;
+        border-radius: 6px;
+      }
+      form {
+        display: flex;
+        gap: 16px;
+      }
+      input,
+      button {
+        padding: 8px;
+        border: solid 1px #ddd;
+        border-radius: 6px;
+      }
+      button:hover,
+      input:hover,
+      label:hover input {
+        border-color: #999;
+      }
+      button {
+        width: fit-content;
+        cursor: pointer;
+        background: #f3f4f6;
+      }
+      button:disabled {
+        cursor: default;
+      }
+    </style>
+    <script src="small-coding-exercise/functions.js"></script>
+  </head>
+  <body>
+    <h1>Small coding exercise</h1>
+
+    <p>
+      This page demonstrates each of the functions implemented for this
+      exercise.<br />
+      The source JavaScript file
+      <a href="small-coding-exercise/functions.js">functions.js</a>
+      can be inspected to see how the functions were implemented.
+    </p>
+
+    <section>
+      <h2>delay</h2>
+
+      <ul>
+        <li>
+          Clicking on the "Start delay" button calls the
+          <code>delay</code> function with the provided time in milliseconds
+        </li>
+        <li>When the delay has elapsed, an alert will be shown</li>
+      </ul>
+
+      <form id="delay-form">
+        <label>
+          Delay (ms)
+          <input id="delay-input" type="number" value="2000" />
+        </label>
+        <button type="submit">Start delay</button>
+      </form>
+
+      <script>
+        (function () {
+          const input = document.getElementById('delay-input');
+          const form = document.getElementById('delay-form');
+          const elements = [...form.elements];
+
+          form.onsubmit = (event) => {
+            event.preventDefault();
+
+            const ms = input.value;
+
+            elements.map((element) => (element.disabled = true));
+
+            delay(ms).then(() => {
+              alert(`Delayed for ${ms}ms`);
+              elements.map((element) => (element.disabled = false));
+            });
+          };
+        })();
+      </script>
+    </section>
+
+    <section>
+      <h2>animateRight</h2>
+
+      <style>
+        #animate-element {
+          position: relative;
+          left: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100px;
+          width: 100px;
+          background-color: cornflowerblue;
+          cursor: pointer;
+        }
+      </style>
+
+      <ul>
+        <li>
+          Clicking on the element "el" below calls the
+          <code>animateRight</code> function with the element.
+        </li>
+        <li>
+          The element will move to the right by 100px over a duration of 1
+          second every time it is clicked.
+        </li>
+        <li>
+          Clicking on the "Reset" button will move the element back to its
+          starting position.
+        </li>
+      </ul>
+
+      <div id="animate-element">el</div>
+
+      <button id="animate-reset" type="button">Reset</button>
+
+      <script>
+        (function () {
+          const el = document.getElementById('animate-element');
+
+          el.onclick = (event) => {
+            animateRight(event.target);
+          };
+
+          document.getElementById('animate-reset').onclick = () => {
+            el.style.left = 0;
+          };
+        })();
+      </script>
+    </section>
+
+    <section>
+      <h2>removeDuplicates</h2>
+
+      <ul>
+        <li>
+          The input below represents an array, with each item separated by a
+          comma.
+        </li>
+        <li>
+          Clicking the "Remove duplicates" button will call the
+          <code>removeDuplicates</code>
+          function with the array, and display the returned array.
+        </li>
+      </ul>
+
+      <form id="remove-duplicates-form">
+        <label>
+          Array
+          <input
+            id="remove-duplicates-input"
+            type="text"
+            value="a,b,b,c,c,c,d,e,f,f"
+          />
+        </label>
+
+        <button type="submit">Remove duplicates</button>
+      </form>
+
+      <p>Result: <span id="remove-duplicates-output"></span></p>
+
+      <script>
+        (function () {
+          const form = document.getElementById('remove-duplicates-form');
+          const input = document.getElementById('remove-duplicates-input');
+          const output = document.getElementById('remove-duplicates-output');
+
+          form.onsubmit = (event) => {
+            event.preventDefault();
+
+            const xs = input.value.split(',').map((item) => item.trim());
+
+            const result = removeDuplicates(xs);
+
+            output.innerText = result.join(',');
+          };
+        })();
+      </script>
+    </section>
+  </body>
+</html>
