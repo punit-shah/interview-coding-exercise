@@ -72,6 +72,11 @@ async function updateImageLinks(urls) {
 
   const imageUrls = urls || (await getMultipleRandomDogImages(10));
 
+  if (!imageUrls.length) {
+    container.textContent = 'No images found.';
+    return;
+  }
+
   const list = document.createElement('ul');
   imageUrls.forEach((url) => {
     const breed = getBreedFromUrl(url);
@@ -115,7 +120,8 @@ function initialiseSearch() {
   form.onsubmit = async (event) => {
     event.preventDefault();
     const input = form.querySelector('input');
-    const imageUrls = await getImagesByBreed(input.value);
+    // use empty array if api request does not return an array of image urls
+    const imageUrls = (await getImagesByBreed(input.value)) || [];
 
     updateImageLinks(imageUrls);
   };
