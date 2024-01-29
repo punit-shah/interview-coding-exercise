@@ -33,7 +33,12 @@ section {
 }
 form {
   display: flex;
-  gap: 16px;
+  gap: 8px;
+}
+label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 input,
 button {
